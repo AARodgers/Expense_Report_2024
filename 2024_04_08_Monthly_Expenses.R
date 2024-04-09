@@ -40,6 +40,7 @@ cleaned_df <- remove_columns_starting_with_X(new_expenses)
 # View cleaned data frame
 print(cleaned_df)
 View(cleaned_df)
+str(cleaned_df)
 
 # Group expenses by category
 grouped_expenses <- cleaned_df %>%
@@ -51,3 +52,10 @@ summarized_expenses <- grouped_expenses %>%
 
 # View the summarized data
 print(summarized_expenses)
+
+# Make bar chart for summarized_expenses
+ggplot(summarized_expenses, aes(x = Category, y = Total_Amount, fill = factor(Category))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Expense Category", y = "Amount ($)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
