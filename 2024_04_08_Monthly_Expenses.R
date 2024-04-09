@@ -40,3 +40,14 @@ cleaned_df <- remove_columns_starting_with_X(new_expenses)
 # View cleaned data frame
 print(cleaned_df)
 View(cleaned_df)
+
+# Group expenses by category
+grouped_expenses <- cleaned_df %>%
+  group_by(Category)
+
+# Summarize expenses within each category
+summarized_expenses <- grouped_expenses %>%
+  summarize(Total_Amount = sum(Amount))
+
+# View the summarized data
+print(summarized_expenses)
